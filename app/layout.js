@@ -1,6 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto_Flex, Lato, Roboto } from "next/font/google";
 
 import "@/app/_styles/globals.css";
+import Header from "./_components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +11,22 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+export const roboto_flex = Roboto_Flex({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const roboto = Roboto({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const lato = Lato({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -23,7 +40,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>Header</header>
+        <Header />
 
         <main>{children}</main>
       </body>
