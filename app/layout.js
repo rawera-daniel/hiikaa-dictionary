@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
 
-        <main>{children}</main>
+        <main className="mt-4">{children}</main>
       </body>
     </html>
   );
