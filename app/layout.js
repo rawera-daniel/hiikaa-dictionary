@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono, Roboto_Flex, Lato, Roboto } from "next/font/google";
 
 import "@/app/_styles/globals.css";
-import Header from "./_components/Header";
+
+import HeaderWrapper from "./_components/HeaderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +39,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
-        <Header />
+        <HeaderWrapper />
 
         <main className="mt-4">{children}</main>
       </body>
