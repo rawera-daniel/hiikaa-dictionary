@@ -1,12 +1,63 @@
-import React from "react";
+"use client";
+
+import React, { use, useState } from "react";
 
 function Search() {
+  const [searchWord, setSearchWord] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const words = [
+    "Ababo",
+    "Aballa",
+    "Abalti",
+    "Abalu",
+    "Abara",
+    "Abarsa",
+    "Abba",
+    "Abaa bayu",
+    "Abba gudda",
+    "banana",
+    "beautiful",
+    "brave",
+    "cat",
+    "creative",
+    "curious",
+    "dog",
+    "delightful",
+    "determined",
+  ];
+
+  // To show suggestion words
+  const handleSearch = (value) => {
+    setSearchWord(value);
+
+    if (value.length > 0) {
+      const filteredWords = words.filter((word) =>
+        word.toLowerCase().startsWith(value.toLowerCase())
+      );
+
+      setSuggestions(filteredWords);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const capitalizedFirstWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  );
+
+  const capitalizedFirstSuggestions = suggestions.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  );
+
   return (
     <section className="relative mt-6">
       <input
         placeholder="Search words..."
-        className=" w-5xl border text-gray-950 border-gray-400 rounded-full  px-6 py-2 focus:outline  focus:outline-gray-800"
         type="text"
+        value={searchWord}
+        onChange={(e) => handleSearch(e.target.value)}
+        className=" w-5xl border text-gray-950 border-gray-400 rounded-full  px-6 py-2 focus:outline  focus:outline-gray-800"
       />
       <div className="absolute top-3 right-5">
         <svg
@@ -27,6 +78,20 @@ function Search() {
           ></rect>
         </svg>
       </div>
+
+      <ul className="mt-4 mx-auto w-[1010px]">
+        {(suggestions.length > 0
+          ? capitalizedFirstSuggestions
+          : capitalizedFirstWords
+        ).map((word, index) => (
+          <li
+            className="max-w-5xl text-lg rounded-md  pl-6 py-2 mb-3 shadow-slate-300 bg-gray-100 shadow-xs tracking-wide cursor-pointer"
+            key={index}
+          >
+            {word}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
