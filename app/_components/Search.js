@@ -1,10 +1,12 @@
 "use client";
 
 import React, { use, useState } from "react";
+import Login from "../login/page";
 
 function Search() {
   const [searchWord, setSearchWord] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedWord, setSelectedWord] = useState(null);
 
   const words = [
     "Ababo",
@@ -50,6 +52,18 @@ function Search() {
     (word) => word.charAt(0).toUpperCase() + word.slice(1)
   );
 
+  const handleWordSelect = (word) => {
+    setSearchWord(word);
+    setSuggestions([]);
+    setSelectedWord(word);
+  };
+
+  // if (searchWord.trim() === "") {
+  //   setSuggestions([]); // Clear suggestions if input is empty
+  //   setSelectedWord(null); // Clear selected word details
+  //   return;
+  // }
+
   return (
     <section className="relative mt-6">
       <input
@@ -79,19 +93,99 @@ function Search() {
         </svg>
       </div>
 
-      <ul className="mt-4 mx-auto w-[1010px]">
+      <div className="absolute bg-white top-16 right-0 mx-auto w-[1010px]">
+        {/* <div> */}
         {(suggestions.length > 0
           ? capitalizedFirstSuggestions
-          : capitalizedFirstWords
+          : selectedWord
+            ? []
+            : capitalizedFirstWords
         ).map((word, index) => (
-          <li
-            className="max-w-5xl text-lg rounded-md  pl-6 py-2 mb-3 shadow-slate-300 bg-gray-100 shadow-xs tracking-wide cursor-pointer"
-            key={index}
-          >
-            {word}
-          </li>
+          <ul className="" key={index}>
+            <li
+              className="max-w-5xl text-lg rounded-md  pl-6 py-2 mb-3 shadow-slate-300 bg-gray-100 shadow-xs tracking-wide cursor-pointer"
+              key={index}
+              onClick={() => handleWordSelect(word)}
+            >
+              {word}
+            </li>
+          </ul>
         ))}
-      </ul>
+      </div>
+
+      {selectedWord && (
+        <div className="mt-8 px-8">
+          <div className=" bg-black rounded-lg  py-5 mx-auto w-[700px] text-center">
+            <h2 className="text-2xl font-bold text-white tracking-wider">
+              {selectedWord}
+            </h2>
+          </div>
+
+          <div className="mt-6 w-[750px] mx-auto">
+            <div className="mb-5">
+              <p className="text-lg mb-2">
+                {/* <span className="font-semibold">{index + 1}.</span>  */}
+                <span className="font-semibold">{1}.</span> A written or printed
+                work consisting of pages glued or sewn together along one side
+                and bound in covers.
+              </p>
+              <p className="text-gray-600 italic text-base pl-4 border-l-2 border-red-400 ml-2 py-1">
+                &quot;He spent the afternoon reading a fascinating book.&quot;
+              </p>
+            </div>
+            <div className="mb-5">
+              <p className="text-lg mb-2">
+                {/* <span className="font-semibold">{index + 1}.</span>  */}
+                <span className="font-semibold">{2}.</span> A bound set of blank
+                sheets for writing or keeping records in.
+              </p>
+              <p className="text-gray-600 italic text-base pl-4 border-l-2 border-red-400 ml-2 py-1">
+                &quot;She wrote her notes in a spiral-bound book.&quot;
+              </p>
+            </div>
+            {/* Synonyms */}
+            <div className="mb-5">
+              <h3 className="font-medium text-base text-gray-600 mb-2">
+                Synonyms
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-4 text-base py-1 bg-red-100 text-red-800 rounded-full  font-medium">
+                  home
+                </span>
+                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
+                  residence
+                </span>
+                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
+                  dwelling
+                </span>
+                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
+                  abode
+                </span>
+              </div>
+            </div>
+
+            <div className="mb-5">
+              <h3 className="font-medium text-base text-gray-600 mb-2">
+                Antonyms
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-4 text-base py-1 bg-green-100 text-green-800 rounded-full  font-medium">
+                  home
+                </span>
+                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
+                  residence
+                </span>
+                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
+                  dwelling
+                </span>
+                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
+                  abode
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
