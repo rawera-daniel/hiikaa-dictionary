@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       >
         <HeaderWrapper />
 
-        <main className="mt-4">{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );
