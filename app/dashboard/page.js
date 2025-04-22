@@ -1,4 +1,4 @@
-import React from "react";
+import HeadDashboard from "../_components/HeadDashboard";
 import Sidebar from "../_components/Sidebar";
 
 export default function page() {
@@ -7,7 +7,10 @@ export default function page() {
       <aside className="w-64 shrink-0">
         <Sidebar />
       </aside>
-      <div className="flex-1">Dashboard Header</div>
+      <div className="flex-1">
+        <HeadDashboard />
+        <div className="text-red-500">main content</div>
+      </div>
     </div>
   );
 }
