@@ -6,7 +6,12 @@ import Header from "./Header";
 export default function HeaderWrapper() {
   const pathname = usePathname();
 
-  if (pathname === "/login" || pathname === "/dashboard") return null; // Hide the header on the login page
+  if (
+    pathname === "/login" ||
+    pathname === "/dashboard" ||
+    pathname === "/dashboard/profile"
+  )
+    return null; // Hide the header on the login page
 
   return <Header />;
 }

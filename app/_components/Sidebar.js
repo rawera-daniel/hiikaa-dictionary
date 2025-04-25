@@ -19,7 +19,7 @@ const navigation = [
   },
   { name: "Dictionary", href: "/dictionary", icon: BookOpen },
   { name: "Add Word", href: "/add-word", icon: PlusSquare },
-  { name: "Profile", href: "/profile", icon: User },
+  { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
 export default function Sidebar() {

@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       >
         <HeaderWrapper />
 
-        <main>{children}</main>
+        <main className="">{children}</main>
       </body>
     </html>
   );
