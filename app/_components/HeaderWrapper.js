@@ -9,7 +9,8 @@ export default function HeaderWrapper() {
   if (
     pathname === "/login" ||
     pathname === "/dashboard" ||
-    pathname === "/dashboard/profile"
+    pathname === "/dashboard/profile" ||
+    pathname === "/dashboard/add-word"
   )
     return null; // Hide the header on the login page
 

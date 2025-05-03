@@ -18,7 +18,7 @@ const navigation = [
     icon: LayoutDashboard,
   },
   { name: "Dictionary", href: "/dictionary", icon: BookOpen },
-  { name: "Add Word", href: "/add-word", icon: PlusSquare },
+  { name: "Add Word", href: "/dashboard/add-word", icon: PlusSquare },
   { name: "Profile", href: "/dashboard/profile", icon: User },
 ];
 
