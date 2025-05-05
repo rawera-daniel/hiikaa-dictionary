@@ -14,7 +14,6 @@ export default function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="p-12  w-full max-w-lg">
-        {/* <h1 className="text-2xl font-bold mb-6 text-center">Log In</h1> */}
         <h1 className="text-2xl font-bold mb-1.5  text-center">
           Welcome Back!
         </h1>
@@ -50,12 +49,12 @@ export default function Login() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-red-500 font-medium text-lg py-2 px-4 cursor-pointer rounded-2xl hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 mt-4"
+          <Link
+            href="/dashboard"
+            className="w-full block text-center bg-red-500 font-medium text-lg py-2 px-4 cursor-pointer rounded-2xl hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 mt-4"
           >
             Log In
-          </button>
+          </Link>
           <p className="text-center mt-6 text-lg">
             Forget your password?
             <span className="text-red-700"> Reset password</span>

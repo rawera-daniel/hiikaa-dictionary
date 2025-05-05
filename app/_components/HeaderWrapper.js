@@ -8,6 +8,7 @@ export default function HeaderWrapper() {
 
   if (
     pathname === "/login" ||
+    pathname === "/signup" ||
     pathname === "/dashboard" ||
     pathname === "/dashboard/profile" ||
     pathname === "/dashboard/add-word"
