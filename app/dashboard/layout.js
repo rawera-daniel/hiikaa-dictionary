@@ -7,9 +7,9 @@ export default function layout({ children }) {
       <aside className="w-64 shrink-0">
         <Sidebar />
       </aside>
-      <div className="flex-1">
+      <div className="flex-1 bg-gray-200 overflow-y-auto">
         <HeadDashboard />
-        <div className="p-6 h-full bg-gray-200">{children}</div>
+        <div className="p-6">{children}</div>
       </div>
     </div>
   );
