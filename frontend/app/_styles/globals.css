@@ -1,9 +1,0 @@
-@import "tailwindcss";
-
-@layer components {
-  .container {
-    max-width: 104rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
-}

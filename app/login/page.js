@@ -4,11 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = () => {
-    console.log("Login attempted with:", { email, password });
+    console.log("Login attempted");
   };
 
   return (
