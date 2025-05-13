@@ -11,8 +11,7 @@ function Navigation() {
         </li>
         <li>
           <Link
-            // href="/signup"
-            href="/dashboard"
+            href="/signup"
             className="py-3 px-6 bg-red-600 text-base disabled:opacity-50  disabled:cursor-not-allowed duration-500 transition hover:bg-red-700 text-white rounded-full font-semibold"
           >
             Sign Up

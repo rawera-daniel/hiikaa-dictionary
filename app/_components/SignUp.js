@@ -23,7 +23,7 @@ export default function SignUp() {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-red-500 underline decoration-red-500"
+            className="text-red-500 underline font-medium decoration-red-500"
           >
             Log in
           </Link>

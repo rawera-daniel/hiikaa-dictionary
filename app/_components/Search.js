@@ -58,12 +58,6 @@ function Search() {
     setSelectedWord(word);
   };
 
-  // if (searchWord.trim() === "") {
-  //   setSuggestions([]); // Clear suggestions if input is empty
-  //   setSelectedWord(null); // Clear selected word details
-  //   return;
-  // }
-
   return (
     <section className="relative mt-6">
       <input
