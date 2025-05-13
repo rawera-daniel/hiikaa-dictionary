@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = () => {
     console.log("Login attempted");
   };
