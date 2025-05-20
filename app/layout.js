@@ -43,9 +43,7 @@ export default function RootLayout({ children }) {
       >
         <HeaderWrapper />
 
-        <main className="max-auto max-w-[120rem] h-screen overflow-hidden">
-          {children}
-        </main>
+        <main className="max-auto max-w-[120rem] h-screen">{children}</main>
       </body>
     </html>
   );

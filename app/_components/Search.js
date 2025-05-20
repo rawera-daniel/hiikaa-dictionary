@@ -1,42 +1,23 @@
 "use client";
 
-import React, { use, useState } from "react";
-import Login from "../login/page";
+import { useState } from "react";
+import WordList from "./WordList";
 
-function Search() {
+function Search({ dictionaries }) {
   const [searchWord, setSearchWord] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedWord, setSelectedWord] = useState(null);
-
-  const words = [
-    "Ababo",
-    "Aballa",
-    "Abalti",
-    "Abalu",
-    "Abara",
-    "Abarsa",
-    "Abba",
-    "Abaa bayu",
-    "Abba gudda",
-    "banana",
-    "beautiful",
-    "brave",
-    "cat",
-    "creative",
-    "curious",
-    "dog",
-    "delightful",
-    "determined",
-  ];
 
   // To show suggestion words
   const handleSearch = (value) => {
     setSearchWord(value);
 
     if (value.length > 0) {
-      const filteredWords = words.filter((word) =>
-        word.toLowerCase().startsWith(value.toLowerCase())
+      const filteredWords = dictionaries.filter((word) =>
+        word.word.toLowerCase().startsWith(value.toLowerCase())
       );
+
+      console.log({ filteredWords });
 
       setSuggestions(filteredWords);
     } else {
@@ -44,18 +25,21 @@ function Search() {
     }
   };
 
-  const capitalizedFirstWords = words.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  const capitalizedFirstWords = dictionaries.map(
+    (word) => word.word.charAt(0).toUpperCase() + word.word.slice(1)
   );
 
   const capitalizedFirstSuggestions = suggestions.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+    (word) => word.word.charAt(0).toUpperCase() + word.word.slice(1)
   );
 
   const handleWordSelect = (word) => {
     setSearchWord(word);
     setSuggestions([]);
-    setSelectedWord(word);
+    setSelectedWord({
+      word,
+      ...dictionaries.find((w) => w.word.toLowerCase() === word.toLowerCase()),
+    });
   };
 
   return (
@@ -88,7 +72,6 @@ function Search() {
       </div>
 
       <div className="absolute bg-white top-16 right-0 mx-auto w-[1010px]">
-        {/* <div> */}
         {(suggestions.length > 0
           ? capitalizedFirstSuggestions
           : selectedWord
@@ -111,72 +94,32 @@ function Search() {
         <div className="mt-8 px-8">
           <div className=" bg-black rounded-lg  py-5 mx-auto w-[700px] text-center">
             <h2 className="text-2xl font-bold text-white tracking-wider">
-              {selectedWord}
+              {selectedWord.word}
             </h2>
           </div>
 
           <div className="mt-6 w-[750px] mx-auto">
             <div className="mb-5">
-              <p className="text-lg mb-2">
-                {/* <span className="font-semibold">{index + 1}.</span>  */}
-                <span className="font-semibold">{1}.</span> A written or printed
-                work consisting of pages glued or sewn together along one side
-                and bound in covers.
+              <p className="text-lg mb-2 space-x-1">
+                <span className="font-semibold translate-x-0.5">{1}.</span>
+                <span>{selectedWord.definition}</span>
               </p>
               <p className="text-gray-600 italic text-base pl-4 border-l-2 border-red-400 ml-2 py-1">
-                &quot;He spent the afternoon reading a fascinating book.&quot;
+                &quot;{selectedWord.example}&quot;
               </p>
-            </div>
-            <div className="mb-5">
-              <p className="text-lg mb-2">
-                {/* <span className="font-semibold">{index + 1}.</span>  */}
-                <span className="font-semibold">{2}.</span> A bound set of blank
-                sheets for writing or keeping records in.
-              </p>
-              <p className="text-gray-600 italic text-base pl-4 border-l-2 border-red-400 ml-2 py-1">
-                &quot;She wrote her notes in a spiral-bound book.&quot;
-              </p>
-            </div>
-            {/* Synonyms */}
-            <div className="mb-5">
-              <h3 className="font-medium text-base text-gray-600 mb-2">
-                Synonyms
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-4 text-base py-1 bg-red-100 text-red-800 rounded-full  font-medium">
-                  home
-                </span>
-                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
-                  residence
-                </span>
-                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
-                  dwelling
-                </span>
-                <span className="px-4 py-1 bg-red-100 text-red-800 rounded-full text-base font-medium">
-                  abode
-                </span>
-              </div>
             </div>
 
-            <div className="mb-5">
-              <h3 className="font-medium text-base text-gray-600 mb-2">
-                Antonyms
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-4 text-base py-1 bg-green-100 text-green-800 rounded-full  font-medium">
-                  home
-                </span>
-                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
-                  residence
-                </span>
-                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
-                  dwelling
-                </span>
-                <span className="px-4 py-1 bg-green-100 text-green-800 rounded-full text-base font-medium">
-                  abode
-                </span>
-              </div>
-            </div>
+            <WordList
+              title="Synonyms"
+              words={selectedWord?.synonyms}
+              color="red"
+            />
+
+            <WordList
+              title="Antonyms"
+              words={selectedWord?.antonyms}
+              color="green"
+            />
           </div>
         </div>
       )}
