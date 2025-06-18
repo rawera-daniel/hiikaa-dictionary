@@ -1,5 +1,12 @@
-export default function WordList({ title, words, color = "red" }) {
+export default function WordList({ title, words, color }) {
   if (!words || words.length === 0) return null;
+
+  const colorClasses = {
+    red: "bg-red-100 text-red-800",
+    green: "bg-green-100 text-green-800",
+  };
+
+  const colorClass = colorClasses[color] || colorClasses.red;
 
   return (
     <div className="mb-5">
@@ -8,7 +15,7 @@ export default function WordList({ title, words, color = "red" }) {
         {words.map((word, index) => (
           <span
             key={index}
-            className={`px-4 text-base py-1 bg-${color}-100 text-${color}-800 rounded-full font-medium`}
+            className={`px-4 text-base py-1 ${colorClass} rounded-full font-medium`}
           >
             {word}
           </span>
